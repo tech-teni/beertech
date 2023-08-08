@@ -8,6 +8,8 @@ import Image from "next/image";
 import martini from "@/public/images/martini.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import { add, remove } from "@/store/slices/cartSlice";
+import loaderImage from '@/public/images/btn_loader.gif'
+
 
 export default function Product() {
   const [data, setData] = useState([]);
@@ -130,6 +132,10 @@ export default function Product() {
             {data.length === 0 && loading=== false &&(
               <p className={styles.null_product}> No product found</p>
             )}
+
+             {loading=== true &&
+            <div className={styles.loader}> <Image src={loaderImage} alt='loader' width={100} height={100} /></div> 
+            }
           </section>
         </main>
       </Wrapper>

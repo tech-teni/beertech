@@ -66,6 +66,14 @@ border-radius: 3px;
         
 }
 
+.loader{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+
+
 .null_product{
     text-align: center;
     padding: 20px 0px;
