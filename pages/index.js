@@ -9,16 +9,13 @@ import martini from "@/public/images/martini.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import { add, remove } from "@/store/slices/cartSlice";
 import loaderImage from '@/public/images/btn_loader.gif'
-
+import ProductList from "@/components/productList";
 
 export default function Product() {
   const [data, setData] = useState([]);
   const [store, setStore] = useState([]);
-  const [added, setAdd] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
 
   // search product
   let getSearchData = (input) => {
@@ -84,50 +81,7 @@ export default function Product() {
             descendData={descendData}
           />
           <section className={styles.project_section}>
-            <ul>
-              {data.map((each) => {
-                return (
-                  <li key={each.id}>
-                    <Image
-                      src={`/images/${each.image}`}
-                      alt="product Image"
-                      width={100}
-                      height={100}
-                    />
-                    <div>
-                      <h4>{each.name}</h4>
-                      <span>
-                        <b>₦</b>
-                        <b>{each.price}</b>
-                      </span>
-                      <button
-                        style={{
-                          backgroundColor: cart?.find(
-                            (obj) => obj.id === each.id
-                          )
-                            ? "blue"
-                            : "#cccaca",
-                        }}
-                        onClick={(e) => {
-                          dispatch(add(each));
-                          setAdd(!added);
-
-                          if (cart?.find((obj) => obj.id === each.id)) {
-                            dispatch(remove(each));
-                          } else {
-                            dispatch(add(each));
-                          }
-                        }}
-                      >
-                        {cart?.find((obj) => obj.id === each.id)
-                          ? "Added"
-                          : "Add to cart"}
-                      </button>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+            <ProductList data={data}/>
 
             {data.length === 0 && loading=== false &&(
               <p className={styles.null_product}> No product found</p>
