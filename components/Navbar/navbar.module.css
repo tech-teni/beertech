@@ -1,0 +1,38 @@
+.navbar_container{
+    background-color: blue;
+
+}
+
+
+.navbar{
+    display: flex;
+    align-items: center;
+    background-color: blue;
+    justify-content: space-between;
+     color: white;
+    padding: 13px 10px;
+    width: 85%;
+    margin: auto;
+
+}
+
+
+
+.navbar h1{
+/* margin-left: 5%; */
+}
+.navbar ul{
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+
+.navbar ul li{
+    font-size: 17px;
+    padding-bottom: 5px;
+}
+.navbar ul li a{
+    font-size: 17px;
+    padding-bottom: 5px !important;
+}
