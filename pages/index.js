@@ -1,90 +1,64 @@
-import Head from 'next/head'
-import { useEffect, useState } from 'react';
-import SearchBar from '@/components/SearchBar';
-// import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/product.module.css'
-import Wrapper from '@/components/Wrapper/index'
-import Image from 'next/image'
-import martini from '@/public/images/martini.jpg'
-import { useSelector, useDispatch } from 'react-redux';
-import { add, remove } from '@/store/slices/cartSlice';
+import Head from "next/head";
+import { useEffect, useState } from "react";
+import SearchBar from "@/components/SearchBar";
+import { Inter } from "next/font/google";
+import styles from "@/styles/product.module.css";
+import Wrapper from "@/components/Wrapper/index";
+import Image from "next/image";
+import martini from "@/public/images/martini.jpg";
+import { useSelector, useDispatch } from "react-redux";
+import { add, remove } from "@/store/slices/cartSlice";
 
-
-export default function Home() {
+export default function Product() {
   const [data, setData] = useState([]);
   const [store, setStore] = useState([]);
   const [added, setAdd] = useState(false);
 
-const dispatch =useDispatch()
-const cart =useSelector(state=> state.cart)
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
 
+  // search product
+  let getSearchData = (input) => {
+    if (input.length !== "") {
+      let res = store.filter((each) => {
+        return each.name.toLowerCase().includes(input.toLowerCase());
+      });
 
-
-
-
-// search product
- let getSearchData=(input)=>{
-    if(input.length !== ''){
-      let res =store.filter((each)=>{
-        console.log(each.name.toLowerCase(), input.toLowerCase )
-  
-        return each.name.toLowerCase().includes(input.toLowerCase())
-      })
-
-      setData(res)
-    }else if(input.length === ''){
-      setData(store)
+      setData(res);
+    } else if (input.length === "") {
+      setData(store);
     }
+  };
 
- }
-
- console.log(cart)
-
-
-
-//  fetch data
+  //  fetch data
   useEffect(() => {
-    console.log
-    fetch('/api/productData')
-      .then(response => response.json())
-      .then(data => {
-
-        setData(data)
-        setStore(data)
+    fetch("/api/productData")
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+        setStore(data);
       })
-      .catch(error => console.error('Error fetching data:', error));
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
-
-
-
   // sort by ascending
-  let ascendData=()=>{
+  let ascendData = () => {
     const sortedProducts = store.slice().sort((a, b) => a.price - b.price);
-    console.log(sortedProducts);
-    setData(sortedProducts)
+    setData(sortedProducts);
+  };
 
- }
-
-   // sort by descending
-   let descendData=()=>{
+  // sort by descending
+  let descendData = () => {
     const sortedProducts = store.slice().sort((a, b) => b.price - a.price);
-    console.log(sortedProducts);
-    setData(sortedProducts)
+    setData(sortedProducts);
+  };
 
- }
-
-
-// Add to cart
-let addToCart=(selectedProduct)=>{
-  const payload = selectedProduct;
-  console.log(payload);
-
-}
+  // Add to cart
+  let addToCart = (selectedProduct) => {
+    const payload = selectedProduct;
+  };
 
   return (
-
     <>
       <Head>
         <title>Beerr Tech</title>
@@ -92,42 +66,65 @@ let addToCart=(selectedProduct)=>{
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-     <Wrapper>
-     <main className={styles.products}>
-      <SearchBar getSearchData={getSearchData} ascendData={ascendData} descendData={descendData}/>
-      <section className={styles.project_section}>
-          <ul>
-       
-              {data.map((each)=>{
+      <Wrapper>
+        <main className={styles.products}>
+          <SearchBar
+            getSearchData={getSearchData}
+            ascendData={ascendData}
+            descendData={descendData}
+          />
+          <section className={styles.project_section}>
+            <ul>
+              {data.map((each) => {
+                return (
+                  <li key={each.id}>
+                    <Image
+                      src={`/images/${each.image}`}
+                      alt="product Image"
+                      width={100}
+                      height={100}
+                    />
+                    <div>
+                      <h4>{each.name}</h4>
+                      <span>
+                        <b>₦</b>
+                        <b>{each.price}</b>
+                      </span>
+                      <button
+                        style={{
+                          backgroundColor: cart?.find(
+                            (obj) => obj.id === each.id
+                          )
+                            ? "blue"
+                            : "#cccaca",
+                        }}
+                        onClick={(e) => {
+                          dispatch(add(each));
+                          setAdd(!added);
 
-                return    <li key={each.id}>
-                <Image src={`/images/${each.image}`} alt='product Image'  width={100} height={100}/>
-                <div>
-                  <h4>{each.name}</h4>
-                  <span><b>₦</b><b>{each.price}</b></span>
-                  <button style={{backgroundColor: cart?.find(obj => obj.id === each.id)? 'blue': '#cccaca'}}  onClick={(e) => {
-                    dispatch(add(each))
-                    setAdd(!added)
-
-                    if(cart?.find(obj => obj.id === each.id)){
-                      dispatch(remove(each))                      
-                    }else{
-                      dispatch(add(each))
-                    }
-                    
-                    }}>{cart?.find(obj => obj.id === each.id)? 'Added': 'Add to cart'}</button>
-                </div>
-              </li>
+                          if (cart?.find((obj) => obj.id === each.id)) {
+                            dispatch(remove(each));
+                          } else {
+                            dispatch(add(each));
+                          }
+                        }}
+                      >
+                        {cart?.find((obj) => obj.id === each.id)
+                          ? "Added"
+                          : "Add to cart"}
+                      </button>
+                    </div>
+                  </li>
+                );
               })}
-          </ul>
+            </ul>
 
-         {data.length === 0 &&
-           <p className={styles.null_product}>  No product found</p>
-         }
-      </section>
-
-      </main>
-     </Wrapper>
+            {data.length === 0 && (
+              <p className={styles.null_product}> No product found</p>
+            )}
+          </section>
+        </main>
+      </Wrapper>
     </>
-  )
+  );
 }

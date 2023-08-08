@@ -1,4 +1,4 @@
-
+/* Searchbar style */
 .search_section{
     padding: 0px 20px;
     height: 100px;
@@ -66,9 +66,6 @@ border: none;
 background-color: blue !important;
 
 }
-
-
-
 .search_input_container button{
 margin-left: 10px;
 }
@@ -132,8 +129,6 @@ width: 10px; }
    
 }
 }
-
-
 @media screen and (max-width: 500px){
     .search_section{
         gap: 7px;
@@ -145,13 +140,11 @@ width: 10px; }
         padding: 20px 20px;
         }
     
-    
 
 .sort_up p{
     font-weight: bold;
     font-size: 12px;
  }
-
 
  
 }

@@ -6,18 +6,17 @@ const cartSlice = createSlice({
   initialState: [],
   reducers: {
     add: (state, action) => {
-      console.log(action)
   const findObject = state.find(obj => obj.id === action.payload.id);
 
   if(findObject){
-    console.log('not added');
 
-
+console.log(true)
 }else{
   state.push(action.payload);
 
 }
     },
+    
     remove: (state, action) => {
       const findObject = state.find(obj => obj.id === action.payload.id);
       if(findObject){

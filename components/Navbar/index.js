@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 const  Navbar = () => {
   const router = useRouter();
   const currentLocation = router.asPath;
-  console.log(currentLocation)
   return (
     <div  className={styles.navbar_container}>
       <div className={styles.navbar}>

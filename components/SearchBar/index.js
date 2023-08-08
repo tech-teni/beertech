@@ -7,6 +7,7 @@ import down from '@/public/images/down.svg'
 
 const SearchBar = ({ getSearchData, ascendData, descendData }) => {
   const [searchData, setSearchData] = useState("");
+  
   return (
     <section className={styles.search_section}>
       <div className={styles.sort_up} >
