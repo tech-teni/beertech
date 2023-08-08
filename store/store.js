@@ -5,16 +5,21 @@ import { persistReducer } from 'redux-persist'
 import thunk from 'redux-thunk'
 import cartSlice from './slices/cartSlice';
 
-const reducers = combineReducers({
+// combine reducers
+const reducer = combineReducers({
   cart: cartSlice            
 });
 
-const persistConfig = {
-    key: 'root',
-    storage
-};
 
-const persistedReducer = persistReducer(persistConfig, reducers);
+// configure for persist store
+const persistConfig = {
+  timeout: 100, //Set the timeout function to 2 seconds
+  key: 'root',
+  storage,};
+
+
+
+const persistedReducer = persistReducer(persistConfig, reducer);
 
 
 const store = configureStore({

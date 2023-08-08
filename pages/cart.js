@@ -54,9 +54,9 @@ useEffect(() => {
         <button  styles={{border: 'none'}}><Image src={payNow} alt='pay'/>Check out</button>
 
         </div>      
-<h3 style={{marginLeft: '20px', paddingTop: '20px',}}>{`Total number : ${data.length}`}</h3>
-    <h3 style={{marginLeft: '20px', paddingTop: '20px',}}>{`Total amount : ₦${totalAmount}`}</h3>
-
+<div className={styles.total }><h3 >{`Total number : ${data.length}`}</h3>
+    <h3>{`Total amount : ₦${totalAmount}`}</h3>
+</div>
 
           <ul>
        

@@ -13,7 +13,7 @@
     background-color: white;
     width: 85%;
     margin: auto;
-    
+    min-height: 60vh;
     margin-top: 20px;
     /* margin-bottom: 20px; */
 
@@ -116,4 +116,16 @@ border-radius: 3px;
 gap: 4px;
     /* width: 30px; */
     margin-right: 20px;
+}
+
+
+
+.total{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 0px 20px 0px;
+    margin-right: 20px;
+
 }
