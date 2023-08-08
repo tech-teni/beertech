@@ -9,7 +9,7 @@ import martini from "@/public/images/martini.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import { add, remove } from "@/store/slices/cartSlice";
 import loaderImage from '@/public/images/btn_loader.gif'
-import ProductList from "@/components/productList";
+import ProductList from "@/components/ProductList";
 
 export default function Product() {
   const [data, setData] = useState([]);
