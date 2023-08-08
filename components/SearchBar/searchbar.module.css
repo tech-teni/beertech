@@ -132,3 +132,26 @@ width: 10px; }
    
 }
 }
+
+
+@media screen and (max-width: 500px){
+    .search_section{
+        gap: 7px;
+        height: 95px;
+        align-items: center;
+        align-items: flex-start;
+        flex-direction: column;  
+        /* justify-content: center; */
+        padding: 20px 20px;
+        }
+    
+    
+
+.sort_up p{
+    font-weight: bold;
+    font-size: 12px;
+ }
+
+
+ 
+}

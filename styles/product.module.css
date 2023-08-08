@@ -31,19 +31,6 @@
 
 }
 
-@media screen and (max-width: 982px){
-    .project_section ul{
-        grid-template-columns: 50% 50%;
-    
-    }    
-}
-@media screen and (max-width: 523px){
-    .project_section ul{
-        grid-template-columns: 100% ;
-    
-    }    
-}
-
 
 .project_section li{
     padding-top: 25px;
@@ -128,4 +115,22 @@ gap: 4px;
     padding: 0px 20px 0px;
     margin-right: 20px;
 
+}
+
+
+
+@media screen and (max-width: 982px){
+    .project_section ul{
+        grid-template-columns: 50% 50%;
+    
+    }    
+}
+@media screen and (max-width: 523px){
+    .project_section ul{
+        grid-template-columns: 100% ;
+    
+    }   
+    .toatal h3{
+        font-size: 12px;
+     } 
 }
