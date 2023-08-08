@@ -35,7 +35,11 @@ const SearchBar = ({ getSearchData, ascendData, descendData }) => {
             getSearchData(e.target.value);
           }}
         />
-        <button>Search </button>
+        <button onClick={(e)=>{
+            e.preventDefault();
+            getSearchData(searchData);
+
+        }}>Search </button>
       </div>
     </section>
   );
