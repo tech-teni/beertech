@@ -14,12 +14,12 @@ const SearchBar = ({ getSearchData, ascendData, descendData }) => {
         
         <p>Sort with price</p>
         <div className={styles.sorting_container}>
-          <button>
-          <Image src={upper} alt='upper' onClick={ascendData}/>
+          <button onClick={ascendData}>
+          <Image src={upper} alt='upper' />
 
           </button>
-          <button>
-          <Image src={down} alt='down' onClick={descendData}/>
+          <button  onClick={descendData}>
+          <Image src={down} alt='down'/>
 
           </button>
         </div>
