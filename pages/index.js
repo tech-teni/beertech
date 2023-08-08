@@ -13,6 +13,7 @@ export default function Product() {
   const [data, setData] = useState([]);
   const [store, setStore] = useState([]);
   const [added, setAdd] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
@@ -32,13 +33,20 @@ export default function Product() {
 
   //  fetch data
   useEffect(() => {
+    setLoading(true)
     fetch("/api/productData")
       .then((response) => response.json())
       .then((data) => {
         setData(data);
         setStore(data);
+        setLoading(false)
+
       })
-      .catch((error) => console.error("Error fetching data:", error));
+      .catch((error) => {
+        console.error("Error fetching data:", error)
+        setLoading(false)
+
+    });
   }, []);
 
   // sort by ascending
@@ -119,7 +127,7 @@ export default function Product() {
               })}
             </ul>
 
-            {data.length === 0 && (
+            {data.length === 0 && loading=== false &&(
               <p className={styles.null_product}> No product found</p>
             )}
           </section>
