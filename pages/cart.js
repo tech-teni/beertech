@@ -9,7 +9,7 @@ import Image from 'next/image'
 import martini from '@/public/images/martini.jpg'
 import { useSelector, useDispatch } from 'react-redux';
 import { add, remove } from '@/store/slices/cartSlice';
-
+import payNow from '@/public/images/pay.svg'
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -37,7 +37,6 @@ useEffect(() => {
 
 
 
-
   return (
 
     <>
@@ -48,11 +47,15 @@ useEffect(() => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
      <Wrapper>
-     <main className={styles.products}>
+     <main className={styles.products} >
       <section className={styles.project_section}>
-        <h1 style={{marginLeft: '20px', paddingTop: '20px', textDecoration: 'underline'}}>Cart:</h1>
-        <h3 style={{marginLeft: '20px', paddingTop: '20px', textDecoration: 'none'}}>{`Total number : ${data.length}`}</h3>
-        <h3 style={{marginLeft: '20px', paddingTop: '20px', textDecoration: 'none'}}>{`Total amount : ₦${totalAmount}`}</h3>
+      <div className={styles.checkout} >        
+        <h1 style={{textDecoration: 'underline'}}>Cart:</h1>
+        <button  styles={{border: 'none'}}><Image src={payNow} alt='pay'/>Check out</button>
+
+        </div>      
+<h3 style={{marginLeft: '20px', paddingTop: '20px',}}>{`Total number : ${data.length}`}</h3>
+    <h3 style={{marginLeft: '20px', paddingTop: '20px',}}>{`Total amount : ₦${totalAmount}`}</h3>
 
 
           <ul>
